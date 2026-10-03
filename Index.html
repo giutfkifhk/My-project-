@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: "Poppins", sans-serif;
+    overflow:hidden;
+}
+
+.page{
+    width:100%;
+    height:100vh;
+    background:linear-gradient(135deg,#fff5f8,#ffdce8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    text-align:center;
+}
+
+.screen{
+    display:none;
+    width:100%;
+    height:100%;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding:25px;
+}
+
+.screen.active{
+    display:flex;
+}
+
+/* HEARTS */
+
+.heart{
+    position:absolute;
+    color:#ff6f91;
+    font-size:20px;
+    animation:float 5s linear infinite;
+    opacity:.7;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(100vh) rotate(0);
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-10vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* TEXT */
+
+h1{
+    color:#e75480;
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+h2{
+    color:#e75480;
+    margin-bottom:20px;
+}
+
+p{
+    color:#555;
+    font-size:16px;
+}
+
+/* BUTTON */
+
+button{
+    border:none;
+    background:#ff5c86;
+    color:white;
+    padding:12px 30px;
+    border-radius:25px;
+    margin-top:25px;
+    font-size:15px;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(255,92,134,.3);
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.08);
+}
+
+/* IMAGE CARD */
+
+.photo{
+    width:180px;
+    height:180px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#ffd1df,#fff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:80px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    margin:15px;
+}
+
+/* BALLOONS */
+
+.balloons{
+    display:flex;
+    gap:20px;
+    margin:20px;
+}
+
+.balloon{
+    width:55px;
+    height:70px;
+    border-radius:50%;
+    background:#ff7194;
+    position:relative;
+    animation:bounce 1.5s infinite alternate;
+}
+
+.balloon:nth-child(2){
+    background:#9b8cff;
+    animation-delay:.3s;
+}
+
+.balloon:nth-child(3){
+    background:#7ed6df;
+    animation-delay:.6s;
+}
+
+.balloon::after{
+    content:"";
+    position:absolute;
+    width:1px;
+    height:80px;
+    background:#555;
+    left:50%;
+    top:68px;
+}
+
+@keyframes bounce{
+    from{transform:translateY(0);}
+    to{transform:translateY(-15px);}
+}
+
+/* CAKE */
+
+.cake{
+    font-size:100px;
+    animation:cakePop 1s ease;
+}
+
+@keyframes cakePop{
+    0%{
+        transform:scale(0);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+/* FLOWER */
+
+.flower{
+    font-size:110px;
+    animation:flower 2s infinite alternate;
+}
+
+@keyframes flower{
+    from{transform:rotate(-5deg);}
+    to{transform:rotate(5deg);}
+}
+
+/* LETTER */
+
+.letter{
+    width:320px;
+    max-width:90%;
+    background:#fffdf4;
+    padding:30px 25px;
+    border-radius:8px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    color:#555;
+    line-height:1.7;
+    animation:letterOpen 1s ease;
+}
+
+@keyframes letterOpen{
+    from{
+        transform:scale(.5) rotate(-5deg);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1) rotate(0);
+        opacity:1;
+    }
+}
+
+/* FINAL */
+
+.final h1{
+    font-size:38px;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+.final-photo{
+    font-size:100px;
+    margin:15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEART CONTAINER -->
+<div id="hearts"></div>
+
+
+<!-- SCREEN 1 -->
+
+<section class="screen active" id="screen1">
+
+    <h1>Happy Birthday 🎂</h1>
+
+    <div class="photo">
+        🎁
+    </div>
+
+    <p>A little surprise for you ❤️</p>
+
+    <button onclick="nextScreen(2)">
+        Open Surprise 💌
+    </button>
+
+</section>
+
+
+<!-- SCREEN 2 -->
+
+<section class="screen" id="screen2">
+
+    <h2>Something Special For You 💕</h2>
+
+    <div class="balloons">
+
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+
+    </div>
+
+    <p>Are you ready?</p>
+
+    <button onclick="nextScreen(3)">
+        Yes ❤️
+    </button>
+
+</section>
+
+
+<!-- SCREEN 3 -->
+
+<section class="screen" id="screen3">
+
+    <h2>First Of All...</h2>
+
+    <div class="cake">
+        🎂
+    </div>
+
+    <p>Make a wish ✨</p>
+
+    <button onclick="nextScreen(4)">
+        Continue 💗
+    </button>
+
+</section>
+
+
+<!-- SCREEN 4 -->
+
+<section class="screen" id="screen4">
+
+    <h2>For Someone Special 🌸</h2>
+
+    <div class="flower">
+        💐
+    </div>
+
+    <p>
+        You deserve all the happiness<br>
+        in the world ❤️
+    </p>
+
+    <button onclick="nextScreen(5)">
+        One More 💌
+    </button>
+
+</section>
+
+
+<!-- SCREEN 5 -->
+
+<section class="screen" id="screen5">
+
+    <div class="letter">
+
+        <h2>Dear You ❤️</h2>
+
+        <p>
+            Today is your special day.
+            <br><br>
+
+            I hope your life is always
+            filled with happiness,
+            beautiful moments and
+            lots of smiles.
+            <br><br>
+
+            Keep smiling and keep shining ✨
+            <br><br>
+
+            Happy Birthday! 🎂❤️
+        </p>
+
+    </div>
+
+    <button onclick="nextScreen(6)">
+        Final Surprise 🎁
+    </button>
+
+</section>
+
+
+<!-- SCREEN 6 -->
+
+<section class="screen final" id="screen6">
+
+    <div class="final-photo">
+        🥳🎂❤️
+    </div>
+
+    <h1>Happy Birthday!</h1>
+
+    <p>
+        May all your dreams come true ✨
+    </p>
+
+    <button onclick="createHearts()">
+        ❤️ Make a Wish
+    </button>
+
+</section>
+
+
+<script>
+
+let currentScreen = 1;
+
+
+/* SCREEN CHANGE */
+
+function nextScreen(number){
+
+    document
+    .getElementById("screen" + currentScreen)
+    .classList.remove("active");
+
+    document
+    .getElementById("screen" + number)
+    .classList.add("active");
+
+    currentScreen = number;
+
+    createHearts();
+}
+
+
+/* CREATE FLOATING HEARTS */
+
+function createHearts(){
+
+    for(let i = 0; i < 15; i++){
+
+        let heart = document.createElement("div");
+
+        heart.className = "heart";
+
+        heart.innerHTML = "❤️";
+
+        heart.style.left =
+            Math.random() * 100 + "%";
+
+        heart.style.animationDuration =
+            (3 + Math.random() * 4) + "s";
+
+        heart.style.fontSize =
+            (12 + Math.random() * 20) + "px";
+
+        document
+        .getElementById("hearts")
+        .appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },7000);
+    }
+}
+
+
+/* START HEARTS */
+
+setInterval(createHearts,3000);
+
+createHearts();
+
+</script>
+
+</body>
+</html>
